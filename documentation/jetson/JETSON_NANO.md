@@ -39,7 +39,7 @@ The minimum setup for 5W power mode is:
 For 10W power mode _(this is good for desktop use when you plug the screen, the mouse, the keyboard, it draws powers from the peripherics)_
 
 - Power supply: [5V⎓4A DC barrel jack adapter, 5.5mm OD x 2.1mm ID x 9.5mm length, center-positive](https://www.adafruit.com/product/1466)
-- 1x [2.54mm Standard Computer Jumper](https://www.amazon.com/2-54mm-Standard-Computer-Jumper-100pack/dp/B00N552DWK/) This is used on the J48 Pin when supplying power from the jack entry instead of the microUSB. It tells the Jetson to by-pass the microUSD power entry.
+- 1x [2.54mm Standard Computer Jumper](https://www.amazon.com/2-54mm-Standard-Computer-Jumper-100pack/dp/B00N552DWK/) This is used on the J48 Pin when supplying power from the jack entry instead of the microUSB. It tells the Jetson to by-pass the microUSB power entry.
 
 For setup:
 
@@ -57,7 +57,6 @@ Learn more about Jetson Nano ecosystem: [https://elinux.org/Jetson_Nano#Ecosyste
 Follow [Flashing guide](FLASH_JETSON.md#Jetson-Nano) (don't forget to verify if CUDA is in your PATH)
 
 #### 2. Set correct Powermode according to your Power supply
-
 ##### Using microUSB
 
 Using microUSD with a powerbank or a 5V⎓2A power supply, you just need to plug-in and the Jetson Nano will start when connected to it.
@@ -109,6 +108,7 @@ sudo apt install python3-pip
 sudo apt-get install -y libffi-dev
 sudo apt-get install -y python-openssl
 sudo apt-get install libssl-dev
+python3 -m pip install -U pip setuptools
 
 sudo pip3 install docker-compose
 ```
@@ -196,5 +196,3 @@ You should be able to operate Opendatacam without lag issues.
 #### 9. Build a case
 
 [Here are the steps to set up the Jetson NANO in the Wildlife Cam Casing from Naturebytes.](HOUSING.md)
-
-

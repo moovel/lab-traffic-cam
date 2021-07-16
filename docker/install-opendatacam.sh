@@ -5,6 +5,7 @@ set -e
 
 # Each OpenDataCam release should set the correct version here and tag appropriatly on github
 VERSION=v3.0.1
+FORK=opendatacam
 # PLATFORM in ["nano","xavier","tx2","nvidiadocker"]
 PLATFORM=undefined
 VIDEO_INPUT=undefined
@@ -23,13 +24,13 @@ display_usage() {
   echo
   echo "Usage: $0"
   echo -n " -p, --platform       Specify platform: "
-  for i in "${PLATFORM_OPTIONS[@]}" 
+  for i in "${PLATFORM_OPTIONS[@]}"
   do
     echo -n "$i "
   done
   echo
   echo -n " -o, --orchestrator   Specify orchestrator: "
-  for i in "${ORCHESTRATOR_OPTIONS[@]}" 
+  for i in "${ORCHESTRATOR_OPTIONS[@]}"
   do
     echo -n "$i "
   done
@@ -49,7 +50,7 @@ function index(){
   shift
 
   i=0
-  for word in "$@" 
+  for word in "$@"
   do
     if [ "${word}" == "${elem}" ]; then
       echo ${i}
@@ -64,7 +65,7 @@ function docker_compose_setup() {
   command -v docker-compose >/dev/null 2>&1 || { echo >&2 "OpenDataCam requires docker-compose, please install and retry"; }
 
   # Get the docker compose file
-  wget -N https://raw.githubusercontent.com/opendatacam/opendatacam/$VERSION/docker/run/$PLATFORM/docker-compose.yml
+  wget -N https://raw.githubusercontent.com/$FORK/opendatacam/$VERSION/docker/run/$PLATFORM/docker-compose.yml
 
   echo "Download, install and run opendatacam docker container"
   sudo docker-compose up -d
@@ -75,12 +76,12 @@ function k8s_setup() {
 
   command -v kubectl >/dev/null 2>&1 || { echo >&2 "OpenDataCam requires Kubernetes, please install and retry.\nFor a Kubernetes for embedded go to https://k3s.io/"; }
 
-  wget -N https://raw.githubusercontent.com/opendatacam/opendatacam/master/docker/run/$PLATFORM/kubernetes/0001-mongodb-deployment.yaml -P opendatacam
-  wget -N https://raw.githubusercontent.com/opendatacam/opendatacam/master/docker/run/$PLATFORM/kubernetes/0002-opendatacam-deployment.yaml -P opendatacam
+  wget -N https://raw.githubusercontent.com/$FORK/opendatacam/$VERSION/docker/run/$PLATFORM/kubernetes/0001-mongodb-deployment.yaml -P opendatacam
+  wget -N https://raw.githubusercontent.com/$FORK/opendatacam/$VERSION/docker/run/$PLATFORM/kubernetes/0002-opendatacam-deployment.yaml -P opendatacam
 
   kubectl create configmap opendatacam --from-file=config.json --dry-run -o yaml | kubectl apply -f -
   kubectl apply -f opendatacam
-  
+
   #Print deployment information
   kubectl get pods
   kubectl get service
@@ -137,7 +138,7 @@ echo "Installing OpenDataCam $VERSION for platform: $2 ..."
 if [ ! -f ./config.json ]; then
     # Get the config file
     echo "Download config file ..."
-    wget -N https://raw.githubusercontent.com/opendatacam/opendatacam/$VERSION/config.json
+    wget -N https://raw.githubusercontent.com/$FORK/opendatacam/$VERSION/config.json
 
     # Replace VIDEO_INPUT and NEURAL_NETWORK with default config for this platform
     VIDEO_INPUT=${DEFAUT_VIDEO_INPUT_OPTIONS[$INDEX]}
@@ -186,4 +187,3 @@ fi
 
 echo "OpenDataCam will start automaticaly on boot when you restart you jetson"
 echo "If you want to stop it, please refer to the doc: https://github.com/opendatacam/opendatacam"
-

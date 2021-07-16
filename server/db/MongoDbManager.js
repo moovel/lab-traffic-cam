@@ -303,10 +303,11 @@ class MongoDbManager extends DbManagerBase {
             }
           },
         );
-
-        if (trackerEntry.objects != null && trackerEntry.objects.length > 0) {
-          db.collection(this.TRACKER_COLLECTION).insertOne(trackerEntry);
-        }
+        /**
+        * if (trackerEntry.objects != null && trackerEntry.objects.length > 0) {
+        *  db.collection(this.TRACKER_COLLECTION).insertOne(trackerEntry);
+        * }
+        */
       }, (reason) => {
         reject(reason);
       });

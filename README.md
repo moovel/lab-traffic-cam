@@ -62,9 +62,9 @@ _For Jetson Nano, [you can follow this dedicated quick start guide](documentatio
 
 #### For Jetson: Flash Jetson board to jetpack 4.3 ⚡️
 
-- [Jetpack 4.3](https://developer.nvidia.com/embedded/jetpack) : [How to find out your jetpack version](documentation/jetson/FLASH_JETSON.md#How-to-find-out-my-Jetpack-version), [Guide to flash your jetson](documentation/jetson/FLASH_JETSON.md)
+- [Jetpack 4.3](https://developer.nvidia.com/jetpack-43-archive) : [How to find out your jetpack version](documentation/jetson/FLASH_JETSON.md#How-to-find-out-my-Jetpack-version), [Guide to flash your jetson](documentation/jetson/FLASH_JETSON.md)
 
-_!!! Warning !!! Note that [there is a performance drop](https://forums.developer.nvidia.com/t/darknet-slower-using-jetpack-4-4-cudnn-8-0-0-cuda-10-2-than-jetpack-4-3-cudnn-7-6-3-cuda-10-0/121579) if you use Jetpack 4.4 DP ([see nvidia forum open issue](https://forums.developer.nvidia.com/t/darknet-slower-using-jetpack-4-4-cudnn-8-0-0-cuda-10-2-than-jetpack-4-3-cudnn-7-6-3-cuda-10-0/121579))_
+⚠️ _!!! Warning !!! Note that [there is a performance drop](https://forums.developer.nvidia.com/t/darknet-slower-using-jetpack-4-4-cudnn-8-0-0-cuda-10-2-than-jetpack-4-3-cudnn-7-6-3-cuda-10-0/121579) if you use Jetpack 4.4 DP ([see nvidia forum open issue](https://forums.developer.nvidia.com/t/darknet-slower-using-jetpack-4-4-cudnn-8-0-0-cuda-10-2-than-jetpack-4-3-cudnn-7-6-3-cuda-10-0/121579))_
 
 - [Docker compose](https://blog.hypriot.com/post/nvidia-jetson-nano-install-docker-compose/) (no official installer available for ARM64 devices)
 
